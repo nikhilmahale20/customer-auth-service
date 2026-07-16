@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- ============================= -->
+	<!-- SPRING BOOT                   -->
+	<!-- ============================= -->
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.5.16</version>
+		<relativePath/>
+	</parent>
+
+	<!-- ============================= -->
+	<!-- PROJECT INFORMATION           -->
+	<!-- ============================= -->
+
+	<groupId>com.neobank</groupId>
+	<artifactId>customer-auth-service</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<name>customer-auth-service</name>
+
+	<description>
+		NeoBank Customer Onboarding and Authentication Service
+	</description>
+
+	<!-- ============================= -->
+	<!-- PROPERTIES                    -->
+	<!-- ============================= -->
+
+	<properties>
+
+		<java.version>21</java.version>
+
+		<spring-cloud.version>2025.0.1</spring-cloud.version>
+
+		<!-- Lombok version used for annotation processing -->
+		<lombok.version>1.18.46</lombok.version>
+
+	</properties>
+
+	<!-- ============================= -->
+	<!-- DEPENDENCIES                  -->
+	<!-- ============================= -->
+
+	<dependencies>
+
+		<!-- ========================= -->
+		<!-- WEB / REST API            -->
+		<!-- ========================= -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- exclude default Spring Boot logging (Logback) when switching to Log4j2 -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- Use Log4j2 as the logging implementation -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+
+		<!-- ========================= -->
+		<!-- DATABASE / JPA            -->
+		<!-- ========================= -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+
+		<!-- ========================= -->
+		<!-- POSTGRESQL                -->
+		<!-- ========================= -->
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+
+		<!-- ========================= -->
+		<!-- FLYWAY DATABASE MIGRATION -->
+		<!-- ========================= -->
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-database-postgresql</artifactId>
+		</dependency>
+
+
+		<!-- ========================= -->
+		<!-- SPRING SECURITY           -->
+		<!-- ========================= -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+
+		<!-- ========================= -->
+		<!-- VALIDATION                -->
+		<!-- ========================= -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-loadbalancer</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<!-- ========================= -->
+		<!-- CAFFEINE CACHE / OTP      -->
+		<!-- ========================= -->
+
+		<dependency>
+			<groupId>com.github.ben-manes.caffeine</groupId>
+			<artifactId>caffeine</artifactId>
+		</dependency>
+		<!-- ========================= -->
+		<!-- ACTUATOR / HEALTH CHECKS  -->
+		<!-- ========================= -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+
+		<!-- ========================= -->
+		<!-- CONFIG SERVER CLIENT      -->
+		<!-- ========================= -->
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+
+
+		<!-- ========================= -->
+		<!-- EUREKA DISCOVERY CLIENT   -->
+		<!-- ========================= -->
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+
+
+		<!-- ========================= -->
+		<!-- OPENAPI / SWAGGER         -->
+		<!-- ========================= -->
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.8.9</version>
+		</dependency>
+
+
+		<!-- ========================= -->
+		<!-- LOMBOK                    -->
+		<!-- ========================= -->
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+
+		<!-- ========================= -->
+		<!-- TESTING                   -->
+		<!-- ========================= -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- ========================= -->
+		<!-- JWT                       -->
+		<!-- ========================= -->
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.12.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.12.6</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.12.6</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+
+	<!-- ============================= -->
+	<!-- SPRING CLOUD BOM              -->
+	<!-- ============================= -->
+
+	<dependencyManagement>
+
+		<dependencies>
+
+			<dependency>
+
+				<groupId>org.springframework.cloud</groupId>
+
+				<artifactId>spring-cloud-dependencies</artifactId>
+
+				<version>${spring-cloud.version}</version>
+
+				<type>pom</type>
+
+				<scope>import</scope>
+
+			</dependency>
+
+		</dependencies>
+
+	</dependencyManagement>
+
+
+	<!-- ============================= -->
+	<!-- BUILD CONFIGURATION           -->
+	<!-- ============================= -->
+
+	<build>
+
+		<plugins>
+
+			<plugin>
+
+				<groupId>org.springframework.boot</groupId>
+
+				<artifactId>spring-boot-maven-plugin</artifactId>
+
+			</plugin>
+
+			<!-- Lombok Annotation Processor Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.14.1</version>
+				<configuration>
+					<source>21</source>
+					<target>21</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>

@@ -1,0 +1,76 @@
+spring:
+  application:
+    name: customer-auth-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/customer_auth_db
+    username: postgres
+    password: Bur@76943
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+  cloud:
+    config:
+      enabled: false
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    
+      properties:
+        spring.json.add.type.headers: false
+        spring.jackson.serialization.write-dates-as-timestamps: false
+
+server:
+  port: 8082
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://10.10.40.193:8761/eureka/
+
+  instance:
+    ip-address: 10.10.40.116
+    prefer-ip-address: true
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+
+
+jwt:
+  secret: my-super-secret-neobank-jwt-key-2026-must-be-at-least-32-bytes
+  expiration: 3600000
+
+
+notification:
+  service:
+    base-url: http://NOTIFICATION-SERVICE
+
+

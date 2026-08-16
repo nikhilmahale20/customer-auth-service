@@ -8,6 +8,10 @@
 
 A robust customer onboarding and authentication microservice built with **Java** and **Spring Boot**. This service handles secure user registration, login, profile management, and password recovery, providing a solid foundation for NeoBank's banking platform.
 
+## 🏗️ Architecture
+
+![NeoBank Architecture](https://raw.githubusercontent.com/nikhilmahale20/NeoBank/master/architecture.png)
+
 ## ✨ Features
 
 - **User Authentication & Authorization**: Secure login and registration using **JWT (JSON Web Tokens)** and **Spring Security**.
